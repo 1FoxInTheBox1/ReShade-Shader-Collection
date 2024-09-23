@@ -20,12 +20,12 @@ RegionResult CalcRegion(float2 uv, float2 centerOffset, int boxSize) {
     float3 squareSum = 0;
 	float3 color = 0;
 	for (int i = 0; i < boxSize; i++) {
-        for (int j = 0; j < boxSize; j++)
-        {
-            float2 pixelOffset = float2((i * ReShade::PixelSize.x), (j * ReShade::PixelSize.y));
-            color += tex2D(ReShade::BackBuffer, uv + (centerOffset * ReShade::PixelSize) + pixelOffset).rgb;
-            squareSum += color * color;
-        }
+	        for (int j = 0; j < boxSize; j++)
+	        {
+	            float2 pixelOffset = float2((i * ReShade::PixelSize.x), (j * ReShade::PixelSize.y));
+	            color += tex2D(ReShade::BackBuffer, uv + (centerOffset * ReShade::PixelSize) + pixelOffset).rgb;
+	            squareSum += color * color;
+	        }
 	}
 
     result.mean = (color / (boxSize * boxSize)).rgb;
